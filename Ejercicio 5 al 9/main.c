@@ -82,7 +82,7 @@ int main()
         int datoAeliminar;
         scanf("%d",&datoAeliminar);
 
-        borrarNodoArbol(ar,datoAeliminar);
+        ar=borrarNodoArbol(ar,datoAeliminar);
         system("pause");
         system("cls");
 
@@ -268,7 +268,7 @@ nodoArbol * buscaNodoMasDer(nodoArbol * arbol)
             aux=arbol;
         }
     }
-    return aux;
+  return aux;
 }
 nodoArbol * buscaNodoMasIzq (nodoArbol * arbol)
 {
@@ -283,7 +283,7 @@ nodoArbol * buscaNodoMasIzq (nodoArbol * arbol)
             aux=arbol;
         }
     }
-    return aux;
+return aux;
 }
 
 
