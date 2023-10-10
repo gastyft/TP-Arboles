@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1696926525 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\tp arboles\ejercicio 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+
+1696980664 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\tp arboles\ejercicio 5 al 8\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"../../Firmas/Firma.h"
+
+1683788451 c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\firmas\firma.h
+
+1696977883 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\firmas\firma.c
+	<stdio.h>
+	<stdlib.h>
+	"Firma.h"
+

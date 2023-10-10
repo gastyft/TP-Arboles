@@ -4,12 +4,12 @@
 #include <string.h>
 #include <conio.h>
 
-
 ///ESTRUCTURAS
 typedef struct Persona
 {
     char Nombre[30];
     int edad;
+    int dni;
 } Persona;
 
 typedef struct Arbol
@@ -28,16 +28,22 @@ void preorder(Arbol *ar);
 void inorder(Arbol *ar);
 void posorder(Arbol *ar);
 Arbol *agregar_nodo(Arbol *ar);
+void buscarNodoArbol(Arbol *ar,int dni);
+
+
 int main()
 {
     color;
-
     Arbol *ar=inicArbol();
-
     ar=agregar_nodo(ar);
-    printf("SALI DE AGREGAR NODO");
     inorder(ar);
-
+    printf("\n");
+    system("pause");
+    system("cls");
+    printf("INGRESE DNI A BUSCAR \n");
+    int dni;
+    scanf("%d",&dni);
+    buscarNodoArbol( ar,dni);
     return 0;
 }
 
@@ -51,7 +57,7 @@ Arbol *inicArbol()
 Arbol *crearArbol(Persona p)
 {
     Arbol *nuevo=(Arbol*)malloc(sizeof(Arbol));
-
+    nuevo->pers.dni=p.dni;
     nuevo->der=NULL;
     nuevo->izq=NULL;
     strcpy(nuevo->pers.Nombre,p.Nombre);
@@ -61,17 +67,15 @@ Arbol *crearArbol(Persona p)
 
 
 
-Arbol *insertar(Arbol *ar, Persona p) {
-    if (ar == NULL) {
+Arbol *insertar(Arbol *ar, Persona p) { /// INSERTAR POR UN IDENTIFICADOR O VARIABLE UNICA POR REGISTRO
+    if (ar == NULL) {                   /// AGREGAR UN ID O UN DNI UNICO
         return crearArbol(p);
     }
-
     if (p.edad < ar->pers.edad) {
         ar->izq = insertar(ar->izq, p);
     } else {
         ar->der = insertar(ar->der, p);
     }
-
     return ar;
 }
 
@@ -80,6 +84,7 @@ void mostrar_Persona(Arbol *ar)
 {
     printf("Nombre: %s \n",ar->pers.Nombre);
     printf("EDAD: %d \n",ar->pers.edad);
+    printf("DNI:%d",ar->pers.dni);
 }
 void preorder(Arbol *ar)
 {
@@ -119,11 +124,12 @@ Arbol *agregar_nodo(Arbol *ar)  ///CONTENEDORA PARA AGREGAR NODO DE TIPO ARBOL
     Persona p;
     while(o!=27)
     {
-
         printf("Ingrese nombre\n");
         gets(p.Nombre);
         printf("Ingrese edad \n");
         scanf("%d",&p.edad);
+        printf("INGRESE DNI \n");
+        scanf("%d",&p.dni);
         ar =insertar(ar,p);
         printf("PRess ESC \n");
         fflush(stdin);
@@ -132,3 +138,17 @@ Arbol *agregar_nodo(Arbol *ar)  ///CONTENEDORA PARA AGREGAR NODO DE TIPO ARBOL
     }
     return ar;
 }
+
+
+
+void buscarNodoArbol(Arbol *ar,int dni){
+
+if(ar->pers.dni ==dni)
+    mostrar_Persona(ar);
+else{
+    buscarNodoArbol(ar->der,dni);
+    buscarNodoArbol(ar->izq,dni);
+}
+}
+
+

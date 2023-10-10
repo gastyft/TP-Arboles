@@ -1,0 +1,165 @@
+/*
+*
+* Elimina el nodo de un arbol binario
+*
+*/
+nodoA* eliminar_nodo_de_arbol (nodoA* arbolDeEnteros, int datoABorrar)
+{
+    /*
+    *
+    * Si existen datos en el arbol, realizo los pasos, sino no me interesa
+    * hacer nada. En caso de que este arbol no tenga datos, retornara su
+    * contenido, que es: NULL (un arbol vacio apunta hacia la nada).
+    *
+    */
+    if (arbolDeEnteros)
+        {
+        /**
+        *
+        * Si el dato del arbol, es igual al dato que queremos eliminar,
+        * estamos en el nodo del arbol que va a ser eliminado.
+        *
+        */
+        if (arbolDeEnteros->dato == datoABorrar)
+            {
+            /*
+            *
+            * Si el arbol tiene hijo izquierdo, el mas adecuado para reemplazarlo es
+            * el nodo mas derecho de su hijo izquierdo (el de mayor valor de su hijo izquierdo).
+            *
+            */
+            if (arbolDeEnteros->izq)
+                {
+                /*
+                *
+                * Guardo el nodo que quiero eliminar para utilizar free().
+                *
+                */
+                nodoA* basura = tomar_nodo_mayor_valor(arbolDeEnteros->izq);
+
+                /*
+                *
+                * Hago la llamada recursiva para su nodo derecho y
+                * asi no perder el restode sus hijos.
+                *
+                */
+                arbolDeEnteros->der = eliminar_nodo_de_arbol(arbolDeEnteros->der, basura->dato);
+
+                /*
+                *
+                * Libero la memoria del nodo que quiero borrar.
+                *
+                */
+                free(basura);
+                }
+            /*
+            *
+            * Sino ocurren otros 2 casos.
+            *
+            */
+            else
+                {
+                /*
+                *
+                * Si el arbol, tiene hijo derecho, debera reemplazar ese nodo
+                * con el nodo mas izquierdo de su hijo derecho
+                *
+                */
+                if (arbolDeEnteros->der)
+                    {
+                    /**
+                    *
+                    * Guardo el nodo que quiero eliminar para utilizar free().
+                    *
+                    */
+                    nodoA* basura = tomar_nodo_menor_valor(arbolDeEnteros->der);
+
+                    /*
+                    *
+                    * Hago la llamada recursiva para su nodo
+                    * izquierdo y no perder el resto de sus hijos.
+                    *
+                    */
+                    arbolDeEnteros->der = eliminar_nodo_de_arbol(arbolDeEnteros->der, arbolDeEnteros->dato);
+
+                    /*
+                    *
+                    * Libero la memoria del nodo que quiero eliminar.
+                    *
+                    */
+                    free(basura);
+                    }
+                /*
+                *
+                * Si no tiene hijo derecho ni izquierdo, es un nodo hoja
+                *
+                */
+                else
+                    {
+                    /*
+                    *
+                    * Libero la memoria de ese nodo que recibi por parametro
+                    * ya que el nodo que quiero eliminar es una hojita (no tiene hijos :D).
+                    *
+                    */
+                    free(arbolDeEnteros);
+
+                    /*
+                    *
+                    * Le asigno NULL al arbol para
+                    * retornarlo en la anterior llamada.
+                    *
+                    */
+                    arbolDeEnteros = NULL;
+                    }
+                }
+            }
+        /*
+        *
+        * Si el dato que quiero eliminar no es igual, tengo 2 opciones
+        *
+        */
+        else
+            {
+            /*
+            *
+            * Si el dato que quiero eliminar, es mayor al dato del nodo actual
+            *
+            */
+            if (datoABorrar > arbolDeEnteros->dato)
+                {
+                /*
+                *
+                * Debo buscar por la rama derecha, devolviendo
+                * esta rama modificada y asignandosela a la misma.
+                *
+                */
+                arbolDeEnteros->der = eliminar_nodo_de_arbol(arbolDeEnteros->der, datoABorrar);
+                }
+            /*
+            *
+            * Si el dato que quiero eliminar, es menor al dato del nodo actual
+            *
+            */
+            else
+                {
+                /*
+                *
+                * Debo buscar por la rama izquierda, devolviento
+                * esta rama modificada y asignandosela a la misma.
+                *
+                */
+                arbolDeEnteros->izq = eliminar_nodo_de_arbol(arbolDeEnteros->izq, datoABorrar);
+                }
+            }
+        }
+
+
+    /*
+    *
+    * Retorno el arbol con el nodo eliminado, al terminar cada llamada recursiva,
+    * retornara el nodo padre con todo el arbol modificado "¡ :O !
+    *
+    */
+    return arbolDeEnteros;
+}

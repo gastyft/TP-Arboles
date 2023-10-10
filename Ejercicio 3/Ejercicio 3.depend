@@ -1,7 +1,14 @@
 # depslib dependency file v1.0
-1696911233 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\tp arboles\ejercicio 3\main.c
+1696914089 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\tp arboles\ejercicio 3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<conio.h>
+
+1683788451 c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\firmas\firma.h
+
+1696913800 source:c:\users\gasty\onedrive\escritorio\utn\programacion y laboratorio 2\firmas\firma.c
+	<stdio.h>
+	<stdlib.h>
+	"Firma.h"
 

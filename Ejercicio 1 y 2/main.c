@@ -4,7 +4,7 @@
 #include <string.h>
 #include <conio.h>
 #define ESC 27
-
+#include "../../Firma/Firma.h"
 /**
  1) Hacer una función que permita ingresar nuevos nodos manteniendo el árbol ordenado (por legajo).
 
@@ -61,7 +61,7 @@ int main()
     nodoArbol *ar=inicArbol();
     ar=AgregarNodo(ar);
     inorder(ar);
-
+firma();
     return 0;
 }
 

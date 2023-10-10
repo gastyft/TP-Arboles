@@ -4,7 +4,7 @@
 #include <string.h>
 #include <conio.h>
 #define ESC 27
-
+#include "../../Firma/Firma.h"
 /// 3) Hacer una función que copie el contenido del árbol en una lista simplemente enlazada.
 
 
